@@ -1,0 +1,128 @@
+package com.cqtalk.controller.toc;
+
+import com.cqtalk.annotation.AuthRequired;
+import com.cqtalk.annotation.LoginRequired;
+import com.cqtalk.annotation.SuperAdminOperate;
+import com.cqtalk.aop.UserRequired;
+import com.cqtalk.entity.file.FileUploadDTO;
+import com.cqtalk.entity.post.*;
+import com.cqtalk.service.toc.file.FileFunctionService;
+import com.cqtalk.service.toc.post.PostService;
+import com.cqtalk.util.returnObject.ObjectResult;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+@RestController
+@RequestMapping("/post")
+public class PostController {
+
+    private static final Logger logger = LoggerFactory.getLogger(PostController.class);
+
+    @Autowired
+    private FileFunctionService fileFunctionService;
+
+    @Autowired
+    private PostService postService;
+
+    @LoginRequired
+    @AuthRequired
+    // 此处调试的时候多加留意 @RequestParam("file") MultipartFile file
+    @ApiOperation(value = "用户上传图片", notes = "尚未测试")
+    @PostMapping("/add/picture")
+    public ObjectResult<AddPictureVO> addFile(/*HttpServletRequest request, */@RequestParam(value = "files") MultipartFile file
+                                        /*,@RequestParam Integer typeId,
+                                        @RequestParam Integer comeFromId*/) throws Exception {
+        FileUploadDTO fileUploadDTO = new FileUploadDTO();
+        fileUploadDTO.setTypeId(0);
+        fileUploadDTO.setComeFromId(0);
+        String path = fileFunctionService.uploadPicture(file, fileUploadDTO);
+        AddPictureVO addPictureVO = new AddPictureVO();
+//        addPictureVO.setPath(path);
+        addPictureVO.setPath("data:image/jpeg;base64,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");
+        return ObjectResult.success(addPictureVO);
+    }
+
+    @LoginRequired
+    @AuthRequired
+    // 此处调试的时候多加留意 @RequestParam("file") MultipartFile file
+    @ApiOperation(value = "用户上传md格式的内容", notes = "已测试")
+    @PostMapping("/add/md")
+    public ObjectResult<String> addMdContent(@RequestBody AddPostDTO addPostDTO) throws Exception {
+        postService.addMdPost(addPostDTO);
+        return ObjectResult.success("发布成功，谢谢您的创作。");
+    }
+
+    @LoginRequired
+    @AuthRequired
+    // 此处调试的时候多加留意 @RequestParam("file") MultipartFile file
+    @ApiOperation(value = "用户上传富文本格式的内容", notes = "已测试")
+    @PostMapping("/add/rt")
+    public ObjectResult<String> addRichTextContent(@RequestBody AddPostDTO addPostDTO) throws Exception {
+        postService.addRichTextPost(addPostDTO);
+        return ObjectResult.success("发布成功，谢谢您的创作。");
+    }
+
+    @LoginRequired
+    @UserRequired(entity = 1)
+    // 此处调试的时候多加留意 @RequestParam("file") MultipartFile file
+    @ApiOperation(value = "删除帖子内容", notes = "尚未测试")
+    @PostMapping("/delete")
+    public ObjectResult<String> deletePost(@RequestBody DeletePostDTO deletePostDTO) {
+        postService.deletePost(deletePostDTO);
+        return ObjectResult.success("删除帖子成功。");
+    }
+
+    @ApiOperation(value = "获取对应的id的帖子的内容", notes = "尚未测试")
+    @GetMapping("/{id}")
+    public ObjectResult<PostVO> getPostInfo(@PathVariable long id) {
+        PostVO postVO = postService.getPostInfo(id);
+        return ObjectResult.success(postVO);
+    }
+
+    // page默认从1开始，type的综合默认为0
+    @ApiOperation(value = "返回帖子列表", notes = "尚未测试")
+    @GetMapping("/list/{type}/{page}")
+    public ObjectResult<PostListVO> getPostListInfo(@PathVariable(required = false) Integer type, @PathVariable(required = false) Integer page) {
+        if(type == null) {
+            type = 0;
+        }
+        if(page == null) {
+            page = 1;
+        }
+        PostListVO postListInfo = postService.getPostListInfo(type, page);
+        return ObjectResult.success(postListInfo);
+    }
+
+    @LoginRequired
+    @UserRequired(entity = 1)
+    // 此处调试的时候多加留意 @RequestParam("file") MultipartFile file
+    @ApiOperation(value = "更新帖子内容", notes = "测试完成")
+    @PostMapping("/update")
+    public ObjectResult<String> updatePost(@RequestBody UpdatePostDTO updatePostDTO) {
+        postService.updatePost(updatePostDTO);
+        return ObjectResult.success("更新帖子成功。");
+    }
+
+    @LoginRequired
+    @SuperAdminOperate
+    @ApiOperation(value = "封禁帖子", notes = "尚未测试")
+    @PostMapping("/ban")
+    public ObjectResult<String> banPost(@RequestBody BanPostDTO banPostDTO) {
+        postService.banPost(banPostDTO);
+        return ObjectResult.success("帖子封禁成功。");
+    }
+
+    @LoginRequired
+    @SuperAdminOperate
+    @ApiOperation(value = "发布专栏", notes = "尚未测试")
+    @PostMapping("/addColumn")
+    public ObjectResult<String> addColumn(@RequestBody AddColumnDTO addColumnDTO) {
+        postService.addColumn(addColumnDTO);
+        return ObjectResult.success("发布专栏成功。");
+    }
+
+}

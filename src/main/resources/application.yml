@@ -1,0 +1,106 @@
+server:
+  port: 8080
+#  servlet:
+#    context-path: /apiv1
+
+spring:
+#  data:
+#    elasticsearch:
+#      uris: 127.0.0.1:9200
+#  data:
+#    elasticsearch:
+#      cluster-name: my-es-cluster
+      # http访问9200，tcp访问9300
+#      cluster-nodes: 127.0.0.1:9300
+
+
+  # kafka
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: test-consumer-group
+      enable-auto-commit: true
+      # 3s自动提交一次
+      auto-commit-interval: 3000
+
+  autoconfigure:
+    exclude: #org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
+
+  servlet:
+    multipart:
+      max-file-size: 205MB # 单个文件大小为 205MB
+      max-request-size: 205MB # 总上传的数据大小 205MB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cqtalk?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 15
+      minimum-idle: 5
+      idle-timeout: 30000
+#  mvc:
+#    static-path-pattern: /**
+#  resources:
+#    static-locations: classpath:/templates
+
+  mail:
+    host: smtp.sina.com
+    port: 465
+    username: zcqzcqabc@sina.com
+    password: 1730248adb09543a
+    # f051385cba0d982c
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+        smtl:
+          auth: true
+  redis:
+    database: 11
+    host: 192.168.1.132
+    port: 6379
+    password: cqtalk030120#
+#    jedis:
+#      pool:
+#        max-active: 50
+#        max-wait: 3000
+#        max-idle: 20
+#        min-idle: 2
+#    timeout: 5000
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cqtalk.entity
+  configuration:
+    #    自动生成id机制
+    use-generated-keys: true
+    #    驼峰命名法
+    map-underscore-to-camel-case: true
+
+# fastDfs配置
+fdfs:
+  connect-timeout: 120
+  so-timeout: 150
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list:
+#    192.168.42.129:22122
+    192.168.1.132:22122
+  pool:
+    #从池中借出的对象的最大数目（配置为-1表示不限制）
+    max-total: -1
+    #获取连接时的最大等待毫秒数(默认配置为5秒)
+    max-wait-millis: 5000
+    #每个key最大连接数
+    max-total-per-key: 50
+    #每个key对应的连接池最大空闲连接数
+    max-idle-per-key: 10
+    #每个key对应的连接池最小空闲连接数
+    min-idle-per-key: 5

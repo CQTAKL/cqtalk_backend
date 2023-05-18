@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqtalk.dao.UserMapper">
+
+    <sql id="selectSql">
+        SELECT id, nick_name, real_name, phone_num,
+    </sql>
+
+    <select id="selectIdByEmail" resultType="java.lang.Integer">
+        SELECT `id` FROM `user` WHERE email = #{email};
+    </select>
+
+    <insert id="insertUser" parameterType="com.cqtalk.entity.user.User">
+        INSERT INTO `user`(email, nick_name, salt, password, status, header_url, create_time) VALUES (
+        #{email}, #{nickName}, #{salt}, #{password}, #{status}, #{headerUrl}, #{createTime} )
+    </insert>
+
+    <select id="selectIdByPhone" resultType="java.lang.Integer">
+        SELECT `id` FROM `user` WHERE phone = #{email};
+    </select>
+
+    <select id="selectIdByRealName" resultType="java.lang.Integer">
+        SELECT `id` FROM `user` WHERE real_name = #{realName};
+    </select>
+
+    <select id="selectSaltById" resultType="String">
+        SELECT `salt` FROM `user` WHERE id = #{id};
+    </select>
+
+    <select id="selectPasswordById" resultType="String">
+        SELECT password FROM `user` WHERE id = #{id};
+    </select>
+
+    <select id="selectHeaderUrlById" resultType="String">
+        SELECT header_url FROM `user` WHERE id = #{id}
+    </select>
+
+    <select id="selectLastHeaderUrlById" resultType="String">
+        SELECT last_header_url FROM `user` WHERE id = #{id}
+    </select>
+
+    <select id="selectEmailById" resultType="String">
+        SELECT email FROM `user` WHERE id = #{id}
+    </select>
+
+    <select id="selectRealNameById" resultType="String">
+        SELECT real_name FROM `user` WHERE id = #{id}
+    </select>
+
+    <update id="updateRealNameAndIdentifyCodeById" parameterType="Integer">
+        UPDATE `user` SET real_name = #{realName}, identify_code = #{identifyCode} WHERE id = #{id}
+    </update>
+
+    <update id="updateShowInfoById" parameterType="com.cqtalk.entity.user.ShowInfoDO">
+        UPDATE `user`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test = "nickName != null"> nick_name = #{nickName}, </if>
+            <if test = "birth != null"> birth = #{birth}, </if>
+            <if test = "motto != null"> motto = #{motto}, </if>
+            <if test = "briefIntro != null"> brief_intro = #{briefIntro}, </if>
+        </trim> WHERE id = #{id}
+    </update>
+
+    <update id="updatePasswordById" parameterType="com.cqtalk.entity.user.ModifyPasswordDO">
+        UPDATE `user` SET password = #{password} WHERE id = #{id}
+    </update>
+
+    <update id="updateMajorById" parameterType="com.cqtalk.entity.user.ModifyMajorDO">
+        UPDATE `user`
+        <trim prefix="SET" suffixOverrides=",">
+            <if test = "major != null"> major = #{major}, </if>
+            <if test = "school != null"> school = #{school}, </if>
+            <if test = "graduateMajor != null"> graduate_major = #{graduateMajor}, </if>
+            <if test = "graduateSchool != null"> graduate_school = #{graduateSchool}, </if>
+        </trim> WHERE id = #{id}
+    </update>
+
+    <update id="updateUrlById" parameterType="com.cqtalk.entity.user.ModifyUrlDO">
+        UPDATE `user` SET header_url = #{headerUrl}, last_header_url = #{lastHeaderUrl} WHERE id = #{id}
+    </update>
+
+    <update id="updateEmailById" parameterType="com.cqtalk.entity.user.ModifyEmailDO">
+        UPDATE `user` SET email = #{email} WHERE id = #{id}
+    </update>
+
+    <update id="updateAuthInfoById" parameterType="com.cqtalk.entity.user.UserIdentifyDO">
+        UPDATE `user` SET real_name = #{realName}, identify_code = #{identifyCode} WHERE id = #{id}
+    </update>
+
+    <select id="selectTypeById" resultType="Integer">
+        SELECT type FROM `user` WHERE id = #{id};
+    </select>
+
+    <select id="getPostShowInfoByUserId" resultType="com.cqtalk.entity.post.PostUserVO">
+        SELECT real_name, nick_name, show_real_name, brief_intro, vip, header_url FROM `user` WHERE id = #{userId};
+    </select>
+
+    <select id="getCommentShowInfoByUserId" resultType="com.cqtalk.entity.comment.CommentUserVO">
+        SELECT real_name, nick_name, show_real_name, brief_intro, vip, header_url FROM `user` WHERE id = #{userId};
+    </select>
+
+    <select id="selectNameInfoByUserId" resultType="com.cqtalk.entity.count.CollectNameVO">
+        SELECT id, real_name, nick_name FROM `user` WHERE id = #{id};
+    </select>
+
+    <select id="selectShowInfoById" resultType="com.cqtalk.entity.user.UserShowInfoVO">
+        SELECT nick_name, birth, motto, brief_intro FROM `user` WHERE id = #{id};
+    </select>
+
+    <insert id="insertUserFollowInfo" parameterType="com.cqtalk.entity.user.UserFollow">
+        insert into `user_follow` (follow_user_id, be_followed_user_id, create_time) VALUES (
+            #{followUserId}, #{beFollowedUserId}, #{createTime} )
+    </insert>
+
+    <select id="selectUserBeFollowedIdByUserId" resultType="Integer">
+        SELECT be_followed_user_id FROM `user_follow` WHERE follow_user_id = #{followUserId};
+    </select>
+
+    <delete id="deleteFollowInfo" parameterType="com.cqtalk.entity.user.UserFollow">
+        DELETE FROM user_follow WHERE follow_user_id = #{followUserId} AND be_followed_user_id = #{beFollowedUserId};
+    </delete>
+
+</mapper>

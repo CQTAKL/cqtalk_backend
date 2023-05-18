@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqtalk.dao.PostMapper">
+
+    <insert id="addPost" parameterType="com.cqtalk.entity.post.Post">
+        INSERT INTO `post` (`id`, `user_id`, `title`, `content`, `create_time`,
+        location_id, column_id, state) VALUES (
+        #{id}, #{userId}, #{title}, #{content}, #{createTime}, #{locationId},
+        #{columnId}, #{state} )
+    </insert>
+
+    <update id="updateStateById" parameterType="Long">
+        UPDATE `post` SET `state` = 1 WHERE id = #{id};
+    </update>
+
+    <select id="selectPostById" resultType="com.cqtalk.entity.post.Post">
+        SELECT id, user_id, title, content, create_time, format, location_id, column_id, state
+        FROM `post` WHERE id = #{id} AND `state` = 1;
+    </select>
+
+    <insert id="addCountInfo" parameterType="Long">
+        INSERT INTO `post_count` (post_id) VALUES (#{id});
+    </insert>
+
+    <select id="getPostList" resultType="com.cqtalk.entity.post.Post">
+        SELECT id, user_id, title, content, create_time, format, location_id, column_id, format FROM `post` WHERE `state` = 1 LIMIT #{page}, 10;
+    </select>
+
+    <select id="getPostListByType" resultType="com.cqtalk.entity.post.Post">
+        SELECT id, user_id, title, `brief_intro`, create_time, format, location_id, column_id, format FROM `post` WHERE `state` = 1 AND `type` = #{type} LIMIT #{page}, 10;
+    </select>
+
+    <select id="getListPageCountByListId" resultType="com.cqtalk.entity.post.PostCountListPageVO">
+        SELECT `post_id`, `browse`, `like`, `collect` FROM post_count WHERE post_id IN
+        <foreach collection="list" item="post_id" index="index" open="(" close=")" separator=",">
+            #{post_id}
+        </foreach>
+    </select>
+
+    <select id="selectPostCount" resultType="Integer">
+        SELECT count(id) FROM `post` WHERE `state` = 1;
+    </select>
+
+    <update id="updatePostById" parameterType="com.cqtalk.entity.post.UpdatePostDTO">
+        UPDATE `post` SET `title` = #{title}, `content` = #{content}, `column_id` = #{columnId} WHERE id = #{id};
+    </update>
+
+    <update id="updateStateBanById" parameterType="Long">
+        UPDATE `post` SET `state` = 2 WHERE id = #{id};
+    </update>
+
+    <select id="selectStateById" resultType="Integer">
+        SELECT `state` FROM `post` WHERE id = #{id};
+    </select>
+
+    <select id="selectUserIdById" resultType="Integer">
+        SELECT user_id FROM `post` WHERE id = #{id};
+    </select>
+
+    <select id="selectCollectInfoById" resultType="com.cqtalk.entity.count.CollectInfoVO">
+        SELECT `id`, title, content, user_id FROM `post` WHERE id = #{id};
+    </select>
+
+    <select id="selectContentAndTitleById" resultType="com.cqtalk.entity.post.TitleContentVO">
+        SELECT `title`, `content` FROM `post` WHERE id = #{id};
+    </select>
+
+    <select id="selectPostCountByType" resultType="Integer">
+        SELECT count(`id`) FROM `post` WHERE type = #{type};
+    </select>
+
+    <insert id="insertColumn" parameterType="com.cqtalk.entity.post.AddColumnDO">
+        INSERT INTO `column` (`title`, `brief_intro`, `content`, `create_time`) VALUES (
+            #{title}, #{briefIntro}, #{content}, #{createTime} )
+    </insert>
+
+</mapper>

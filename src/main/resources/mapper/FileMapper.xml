@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqtalk.dao.FileMapper">
+
+    <select id="selectSupportBySuffix" resultType="Integer">
+        SELECT support FROM `file_type` WHERE suffix = #{suffix}
+    </select>
+
+    <select id="selectIdBySuffix" resultType="Integer">
+        SELECT id FROM `file_type` WHERE suffix = #{suffix}
+    </select>
+
+    <select id="selectSupportById" resultType="Integer">
+        SELECT support FROM `file_type` WHERE id = #{id}
+    </select>
+
+    <select id="getIdByFileUrl" resultType="Long">
+        SELECT `id` FROM file WHERE path = #{fileUrl};
+    </select>
+
+    <select id="selectFileNameById" resultType="String">
+        SELECT name FROM file WHERE id = #{id};
+    </select>
+
+    <insert id="insertFile" parameterType="com.cqtalk.entity.file.File">
+        INSERT INTO file(id, name, suffix, type_id, size, size_suffix, create_time, user_id,
+                         path, md5, come_from_id)
+        VALUES (#{id}, #{name}, #{suffix}, #{typeId}, #{size}, #{sizeSuffix}, #{createTime},
+                #{userId}, #{path}, #{md5}, #{comeFromId})
+    </insert>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(id) FROM file;
+    </select>
+
+    <select id="selectMd5" resultType="String">
+        SELECT md5 FROM file;
+    </select>
+
+    <select id="selectPathByMd5" resultType="String">
+        SELECT path FROM file WHERE md5 = #{md5};
+    </select>
+
+    <select id="selectPathById" resultType="String">
+        SELECT path FROM file WHERE id = #{id}
+    </select>
+
+    <insert id="insertFileRecommendInfo" parameterType="com.cqtalk.entity.file.FileAddRecommendDTO">
+        INSERT INTO `file_recommend` (file_id, recommend_file_id, sort_order) VALUES (
+            #{fileId}, #{recommendFileId}, #{sortOrder} )
+    </insert>
+
+    <select id="selectShowOrdersByFileId" resultType="Integer">
+        SELECT sort_order FROM file_recommend WHERE file_id = #{fileId};
+    </select>
+
+    <select id="selectIdByFileId" resultType="Integer">
+        SELECT id FROM file_recommend WHERE file_id = #{fileId};
+    </select>
+
+    <select id="selectRecommendFileIdByFileId"  resultType="Long">
+        SELECT recommend_file_id FROM file_recommend WHERE file_id = #{fileId};
+    </select>
+
+    <delete id="deleteRecommendInfo" parameterType="com.cqtalk.entity.file.FileDeleteRecommendDTO">
+        DELETE FROM file_recommend WHERE file_id = #{fileId} and recommend_file_id = #{recommendFileId};
+    </delete>
+
+    <update id="updateRecommendInfo" parameterType="com.cqtalk.entity.file.FileUpdateRecommendDO">
+        UPDATE file_recommend SET sort_order = #{sortOrder} - 1 WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
+    </update>
+
+    <select id="getFileCommendInfoByFileId" resultType="com.cqtalk.entity.file.FileRecommendResVO">
+        SELECT recommend_file_id, sort_order FROM file_recommend WHERE file_id = #{fileId};
+    </select>
+
+    <select id="selectUserIdById" resultType="Integer">
+        SELECT user_id FROM file WHERE id = #{id};
+    </select>
+
+    <update id="updateStatusById" parameterType="Long">
+        UPDATE `file` SET `status` = 1 WHERE id = #{id};
+    </update>
+
+    <select id="selectIdByFileIdAndSortOrder" resultType="Integer">
+        SELECT id FROM file_recommend WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
+    </select>
+
+    <select id="selectCountByFileId" resultType="Integer">
+        SELECT count(file_id) FROM file_recommend;
+    </select>
+
+    <select id="selectUserIdByFileId" resultType="Integer">
+        SELECT user_id FROM `file` WHERE id = #{fileId};
+    </select>
+
+    <update id="upRecommendSortOrder" parameterType="com.cqtalk.entity.file.FileUpdateRecommendDO">
+        UPDATE file_recommend SET sort_order = #{sortOrder} - 1 WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
+    </update>
+
+    <update id="downRecommendSortOrder" parameterType="com.cqtalk.entity.file.FileUpdateRecommendDO">
+        UPDATE file_recommend SET sort_order = #{sortOrder} + 1 WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
+    </update>
+
+    <select id="selectFileInfoById" resultType="com.cqtalk.entity.count.CollectFileVO">
+        SELECT
+    </select>
+
+    <select id="selectTitleAndContentById" resultType="com.cqtalk.entity.file.FileTitleContentVO">
+        SELECT `title`, `content` FROM `file` WHERE id = #{id};
+    </select>
+
+</mapper>
