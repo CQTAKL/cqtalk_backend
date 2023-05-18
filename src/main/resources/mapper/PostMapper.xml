@@ -31,7 +31,7 @@
         SELECT id, user_id, title, `brief_intro`, create_time, format, location_id, column_id, format FROM `post` WHERE `state` = 1 AND `type` = #{type} LIMIT #{page}, 10;
     </select>
 
-    <select id="getListPageCountByListId" resultType="com.cqtalk.entity.post.PostCountListPageVO">
+    <select id="getListPageCountByListId" resultType="com.cqtalk.entity.post.vo.PostCountListPageVO">
         SELECT `post_id`, `browse`, `like`, `collect` FROM post_count WHERE post_id IN
         <foreach collection="list" item="post_id" index="index" open="(" close=")" separator=",">
             #{post_id}
@@ -42,7 +42,7 @@
         SELECT count(id) FROM `post` WHERE `state` = 1;
     </select>
 
-    <update id="updatePostById" parameterType="com.cqtalk.entity.post.UpdatePostDTO">
+    <update id="updatePostById" parameterType="com.cqtalk.entity.post.dto.UpdatePostDTO">
         UPDATE `post` SET `title` = #{title}, `content` = #{content}, `column_id` = #{columnId} WHERE id = #{id};
     </update>
 
@@ -58,11 +58,11 @@
         SELECT user_id FROM `post` WHERE id = #{id};
     </select>
 
-    <select id="selectCollectInfoById" resultType="com.cqtalk.entity.count.CollectInfoVO">
+    <select id="selectCollectInfoById" resultType="com.cqtalk.entity.count.vo.CollectInfoVO">
         SELECT `id`, title, content, user_id FROM `post` WHERE id = #{id};
     </select>
 
-    <select id="selectContentAndTitleById" resultType="com.cqtalk.entity.post.TitleContentVO">
+    <select id="selectContentAndTitleById" resultType="com.cqtalk.entity.post.vo.TitleContentVO">
         SELECT `title`, `content` FROM `post` WHERE id = #{id};
     </select>
 

@@ -1,6 +1,8 @@
 package com.cqtalk.service.toc.file;
 
-import com.cqtalk.entity.file.*;
+import com.cqtalk.entity.file.dto.*;
+import com.cqtalk.entity.file.vo.FileDownloadVO;
+import com.cqtalk.entity.file.vo.FileRecommendVO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

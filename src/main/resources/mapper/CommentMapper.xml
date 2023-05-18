@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqtalk.dao.CommentMapper">
 
-    <select id="getAllInfo" resultType="com.cqtalk.entity.comment.CommentDataDTO">
+    <select id="getAllInfo" resultType="com.cqtalk.entity.comment.dto.CommentDataDTO">
         SELECT id, user_id, content, location_id, like_count, create_time, parent_id, at_id FROM `comment`
         WHERE `type` = #{type} and entity_id = #{entityId} and `state` = 1;
     </select>
@@ -13,7 +13,7 @@
         #{id}, #{userId}, #{content}, #{locationId}, #{parentId}, #{atId}, #{type}, #{entityId}, #{state} )
     </insert>
 
-    <update id="updateStateById" parameterType="com.cqtalk.entity.comment.DeleteCommentDTO">
+    <update id="updateStateById" parameterType="com.cqtalk.entity.comment.dto.DeleteCommentDTO">
         UPDATE `comment` SET `state` = 2 WHERE id = #{id};
     </update>
 

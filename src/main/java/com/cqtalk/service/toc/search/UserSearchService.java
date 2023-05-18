@@ -1,7 +1,7 @@
 package com.cqtalk.service.toc.search;
 
 import com.cqtalk.entity.search.PostSearch;
-import com.cqtalk.entity.search.PostSearchVO;
+import com.cqtalk.entity.search.vo.PostSearchVO;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

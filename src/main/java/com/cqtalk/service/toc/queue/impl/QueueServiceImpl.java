@@ -2,12 +2,12 @@ package com.cqtalk.service.toc.queue.impl;
 
 import com.cqtalk.dao.FileMapper;
 import com.cqtalk.dao.PostMapper;
-import com.cqtalk.entity.file.FileTitleContentVO;
-import com.cqtalk.entity.post.TitleContentVO;
-import com.cqtalk.entity.queue.AddSystemNoticeDTO;
-import com.cqtalk.entity.queue.ColumnNoticeVO;
+import com.cqtalk.entity.file.vo.FileTitleContentVO;
+import com.cqtalk.entity.post.vo.TitleContentVO;
+import com.cqtalk.entity.queue.dto.AddSystemNoticeDTO;
+import com.cqtalk.entity.queue.vo.ColumnNoticeVO;
 import com.cqtalk.entity.queue.Event;
-import com.cqtalk.entity.queue.SystemInfoVO;
+import com.cqtalk.entity.queue.vo.SystemInfoVO;
 import com.cqtalk.service.toc.queue.QueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

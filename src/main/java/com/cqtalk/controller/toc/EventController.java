@@ -1,13 +1,7 @@
 package com.cqtalk.controller.toc;
 
-import com.cqtalk.annotation.LoginRequired;
-import com.cqtalk.entity.queue.AddSystemNoticeDTO;
-import com.cqtalk.entity.queue.ColumnNoticeVO;
-import com.cqtalk.entity.queue.SystemInfoVO;
 import com.cqtalk.service.toc.queue.QueueService;
 import com.cqtalk.util.jwt.JWTUtil;
-import com.cqtalk.util.returnObject.ObjectResult;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

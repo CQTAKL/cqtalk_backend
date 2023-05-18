@@ -46,7 +46,7 @@
         SELECT path FROM file WHERE id = #{id}
     </select>
 
-    <insert id="insertFileRecommendInfo" parameterType="com.cqtalk.entity.file.FileAddRecommendDTO">
+    <insert id="insertFileRecommendInfo" parameterType="com.cqtalk.entity.file.dto.FileAddRecommendDTO">
         INSERT INTO `file_recommend` (file_id, recommend_file_id, sort_order) VALUES (
             #{fileId}, #{recommendFileId}, #{sortOrder} )
     </insert>
@@ -63,7 +63,7 @@
         SELECT recommend_file_id FROM file_recommend WHERE file_id = #{fileId};
     </select>
 
-    <delete id="deleteRecommendInfo" parameterType="com.cqtalk.entity.file.FileDeleteRecommendDTO">
+    <delete id="deleteRecommendInfo" parameterType="com.cqtalk.entity.file.dto.FileDeleteRecommendDTO">
         DELETE FROM file_recommend WHERE file_id = #{fileId} and recommend_file_id = #{recommendFileId};
     </delete>
 
@@ -71,7 +71,7 @@
         UPDATE file_recommend SET sort_order = #{sortOrder} - 1 WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
     </update>
 
-    <select id="getFileCommendInfoByFileId" resultType="com.cqtalk.entity.file.FileRecommendResVO">
+    <select id="getFileCommendInfoByFileId" resultType="com.cqtalk.entity.file.vo.FileRecommendResVO">
         SELECT recommend_file_id, sort_order FROM file_recommend WHERE file_id = #{fileId};
     </select>
 
@@ -103,11 +103,11 @@
         UPDATE file_recommend SET sort_order = #{sortOrder} + 1 WHERE file_id = #{fileId} AND sort_order = #{sortOrder};
     </update>
 
-    <select id="selectFileInfoById" resultType="com.cqtalk.entity.count.CollectFileVO">
+    <select id="selectFileInfoById" resultType="com.cqtalk.entity.count.vo.CollectFileVO">
         SELECT
     </select>
 
-    <select id="selectTitleAndContentById" resultType="com.cqtalk.entity.file.FileTitleContentVO">
+    <select id="selectTitleAndContentById" resultType="com.cqtalk.entity.file.vo.FileTitleContentVO">
         SELECT `title`, `content` FROM `file` WHERE id = #{id};
     </select>
 

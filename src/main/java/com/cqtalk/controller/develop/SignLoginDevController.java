@@ -1,6 +1,6 @@
 package com.cqtalk.controller.develop;
 
-import com.cqtalk.entity.user.RegisterDTO;
+import com.cqtalk.entity.user.dto.RegisterDTO;
 import com.cqtalk.service.develop.user.SignLoginDevService;
 import com.cqtalk.util.returnObject.ObjectResult;
 import io.swagger.annotations.Api;

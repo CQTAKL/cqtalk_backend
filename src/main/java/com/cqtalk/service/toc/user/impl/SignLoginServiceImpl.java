@@ -2,6 +2,7 @@ package com.cqtalk.service.toc.user.impl;
 
 import com.cqtalk.dao.UserMapper;
 import com.cqtalk.entity.user.*;
+import com.cqtalk.entity.user.dto.*;
 import com.cqtalk.enumerate.email.EMAIL_SEND_TYPE;
 import com.cqtalk.enumerate.user.LOGIN_STATUS_ENUM;
 import com.cqtalk.enumerate.user.REMEMBER_EXPIRED_ENUM;

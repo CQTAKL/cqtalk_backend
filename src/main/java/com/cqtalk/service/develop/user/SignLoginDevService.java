@@ -1,6 +1,6 @@
 package com.cqtalk.service.develop.user;
 
-import com.cqtalk.entity.user.RegisterDTO;
+import com.cqtalk.entity.user.dto.RegisterDTO;
 import org.springframework.stereotype.Service;
 
 @Service

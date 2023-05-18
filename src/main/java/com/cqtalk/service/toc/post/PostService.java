@@ -1,6 +1,8 @@
 package com.cqtalk.service.toc.post;
 
-import com.cqtalk.entity.post.*;
+import com.cqtalk.entity.post.dto.*;
+import com.cqtalk.entity.post.vo.PostListVO;
+import com.cqtalk.entity.post.vo.PostVO;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;

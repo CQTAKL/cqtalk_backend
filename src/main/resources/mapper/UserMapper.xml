@@ -80,7 +80,7 @@
         UPDATE `user` SET header_url = #{headerUrl}, last_header_url = #{lastHeaderUrl} WHERE id = #{id}
     </update>
 
-    <update id="updateEmailById" parameterType="com.cqtalk.entity.user.ModifyEmailDO">
+    <update id="updateEmailById" parameterType="com.cqtalk.entity.user.dto.ModifyEmailDO">
         UPDATE `user` SET email = #{email} WHERE id = #{id}
     </update>
 
@@ -92,19 +92,19 @@
         SELECT type FROM `user` WHERE id = #{id};
     </select>
 
-    <select id="getPostShowInfoByUserId" resultType="com.cqtalk.entity.post.PostUserVO">
+    <select id="getPostShowInfoByUserId" resultType="com.cqtalk.entity.post.vo.PostUserVO">
         SELECT real_name, nick_name, show_real_name, brief_intro, vip, header_url FROM `user` WHERE id = #{userId};
     </select>
 
-    <select id="getCommentShowInfoByUserId" resultType="com.cqtalk.entity.comment.CommentUserVO">
+    <select id="getCommentShowInfoByUserId" resultType="com.cqtalk.entity.comment.vo.CommentUserVO">
         SELECT real_name, nick_name, show_real_name, brief_intro, vip, header_url FROM `user` WHERE id = #{userId};
     </select>
 
-    <select id="selectNameInfoByUserId" resultType="com.cqtalk.entity.count.CollectNameVO">
+    <select id="selectNameInfoByUserId" resultType="com.cqtalk.entity.count.vo.CollectNameVO">
         SELECT id, real_name, nick_name FROM `user` WHERE id = #{id};
     </select>
 
-    <select id="selectShowInfoById" resultType="com.cqtalk.entity.user.UserShowInfoVO">
+    <select id="selectShowInfoById" resultType="com.cqtalk.entity.user.vo.UserShowInfoVO">
         SELECT nick_name, birth, motto, brief_intro FROM `user` WHERE id = #{id};
     </select>
 

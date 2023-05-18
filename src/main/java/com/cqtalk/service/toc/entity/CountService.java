@@ -1,6 +1,8 @@
 package com.cqtalk.service.toc.entity;
 
-import com.cqtalk.entity.count.*;
+import com.cqtalk.entity.count.dto.*;
+import com.cqtalk.entity.count.vo.CollectInfoVO;
+import com.cqtalk.entity.count.vo.EntityCollectLabelVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

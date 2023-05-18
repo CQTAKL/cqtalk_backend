@@ -1,6 +1,7 @@
 package com.cqtalk.service.toc.user;
 
-import com.cqtalk.entity.user.*;
+import com.cqtalk.entity.user.dto.*;
+import com.cqtalk.entity.user.vo.UserShowInfoVO1;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,7 +1,7 @@
 package com.cqtalk.util.user.authentication;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cqtalk.entity.user.UserIdentifyVO;
+import com.cqtalk.entity.user.vo.UserIdentifyVO;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;

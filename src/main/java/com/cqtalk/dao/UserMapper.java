@@ -1,9 +1,11 @@
 package com.cqtalk.dao;
 
-import com.cqtalk.entity.comment.CommentUserVO;
-import com.cqtalk.entity.count.CollectNameVO;
-import com.cqtalk.entity.post.PostUserVO;
+import com.cqtalk.entity.comment.vo.CommentUserVO;
+import com.cqtalk.entity.count.vo.CollectNameVO;
+import com.cqtalk.entity.post.vo.PostUserVO;
 import com.cqtalk.entity.user.*;
+import com.cqtalk.entity.user.dto.ModifyEmailDO;
+import com.cqtalk.entity.user.vo.UserShowInfoVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

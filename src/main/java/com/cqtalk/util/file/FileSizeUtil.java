@@ -1,6 +1,6 @@
 package com.cqtalk.util.file;
 
-import com.cqtalk.entity.file.FileSizeDTO;
+import com.cqtalk.entity.file.dto.FileSizeDTO;
 import com.cqtalk.enumerate.file.FILE_MAX_LIMIT_ENUM;
 import com.cqtalk.enumerate.file.FILE_SIZE_ENUM;
 import com.cqtalk.util.returnObject.DescribeException;

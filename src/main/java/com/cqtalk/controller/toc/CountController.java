@@ -1,7 +1,8 @@
 package com.cqtalk.controller.toc;
 
 import com.cqtalk.annotation.LoginRequired;
-import com.cqtalk.entity.count.*;
+import com.cqtalk.entity.count.dto.*;
+import com.cqtalk.entity.count.vo.EntityCollectLabelVO;
 import com.cqtalk.service.toc.entity.CountService;
 import com.cqtalk.util.jwt.JWTUtil;
 import com.cqtalk.util.returnObject.ObjectResult;
@@ -10,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/count")

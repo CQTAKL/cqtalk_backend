@@ -2,7 +2,7 @@ package com.cqtalk.dao;
 
 import com.cqtalk.entity.count.CollectDO;
 import com.cqtalk.entity.count.EntityCollectDO;
-import com.cqtalk.entity.count.FollowColumnDTO;
+import com.cqtalk.entity.count.dto.FollowColumnDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

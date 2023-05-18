@@ -1,7 +1,10 @@
 package com.cqtalk.dao;
 
-import com.cqtalk.entity.count.CollectPostVO;
+import com.cqtalk.entity.count.vo.CollectPostVO;
 import com.cqtalk.entity.post.*;
+import com.cqtalk.entity.post.dto.UpdatePostDTO;
+import com.cqtalk.entity.post.vo.PostCountListPageVO;
+import com.cqtalk.entity.post.vo.TitleContentVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

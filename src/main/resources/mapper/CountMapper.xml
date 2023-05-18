@@ -16,11 +16,11 @@
         SELECT id, type, entity_id, user_id, label_name, create_time FROM `collect` WHERE user_id = #{userId};
     </select>
 
-    <insert id="insertFollowColumnInfo" parameterType="com.cqtalk.entity.count.FollowColumnDTO">
+    <insert id="insertFollowColumnInfo" parameterType="com.cqtalk.entity.count.dto.FollowColumnDTO">
         INSERT INTO `user_follow_column` (column_id, user_id) VALUES (#{columnId}, #{userId});
     </insert>
 
-    <delete id="deleteFollowColumnInfo" parameterType="com.cqtalk.entity.count.FollowColumnDTO">
+    <delete id="deleteFollowColumnInfo" parameterType="com.cqtalk.entity.count.dto.FollowColumnDTO">
         DELETE FROM `user_follow_column` WHERE column_id = #{columnId} AND user_id = #{userId};
     </delete>
 

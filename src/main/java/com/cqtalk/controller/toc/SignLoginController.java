@@ -1,6 +1,7 @@
 package com.cqtalk.controller.toc;
 
-import com.cqtalk.entity.user.*;
+import com.cqtalk.entity.user.dto.*;
+import com.cqtalk.entity.user.vo.CaptchaVO;
 import com.cqtalk.service.toc.user.SignLoginService;
 import com.cqtalk.util.encrypt.UUIDUtil;
 import com.cqtalk.util.redis.RedisKeyUtil;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;

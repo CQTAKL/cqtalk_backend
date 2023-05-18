@@ -1,19 +1,12 @@
 package com.cqtalk.controller.toc;
 
-import com.cqtalk.annotation.AuthRequired;
-import com.cqtalk.annotation.LoginRequired;
-import com.cqtalk.entity.file.FileUploadDTO;
-import com.cqtalk.entity.post.Post;
 import com.cqtalk.entity.search.PostSearch;
-import com.cqtalk.entity.search.PostSearchInfo;
-import com.cqtalk.entity.search.PostSearchVO;
+import com.cqtalk.entity.search.vo.PostSearchVO;
 import com.cqtalk.service.toc.search.UserSearchService;
 import com.cqtalk.util.returnObject.ObjectResult;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/search")

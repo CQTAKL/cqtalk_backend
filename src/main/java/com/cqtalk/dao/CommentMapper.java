@@ -1,8 +1,8 @@
 package com.cqtalk.dao;
 
 import com.cqtalk.entity.comment.Comment;
-import com.cqtalk.entity.comment.CommentDataDTO;
-import com.cqtalk.entity.comment.GetCommentDTO;
+import com.cqtalk.entity.comment.dto.CommentDataDTO;
+import com.cqtalk.entity.comment.dto.GetCommentDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

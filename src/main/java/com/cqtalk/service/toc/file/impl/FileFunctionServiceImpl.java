@@ -2,6 +2,10 @@ package com.cqtalk.service.toc.file.impl;
 
 import com.cqtalk.dao.FileMapper;
 import com.cqtalk.entity.file.*;
+import com.cqtalk.entity.file.dto.*;
+import com.cqtalk.entity.file.vo.FileDownloadVO;
+import com.cqtalk.entity.file.vo.FileRecommendResVO;
+import com.cqtalk.entity.file.vo.FileRecommendVO;
 import com.cqtalk.enumerate.file.FILE_RECOMMEND_ENUM;
 import com.cqtalk.enumerate.file.FILE_TYPE_ENUM;
 import com.cqtalk.service.toc.file.FileFunctionService;

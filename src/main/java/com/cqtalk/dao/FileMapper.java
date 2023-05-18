@@ -1,7 +1,11 @@
 package com.cqtalk.dao;
 
-import com.cqtalk.entity.count.CollectFileVO;
+import com.cqtalk.entity.count.vo.CollectFileVO;
 import com.cqtalk.entity.file.*;
+import com.cqtalk.entity.file.dto.FileAddRecommendDTO;
+import com.cqtalk.entity.file.dto.FileDeleteRecommendDTO;
+import com.cqtalk.entity.file.vo.FileRecommendResVO;
+import com.cqtalk.entity.file.vo.FileTitleContentVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
